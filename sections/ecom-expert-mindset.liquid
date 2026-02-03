@@ -1,0 +1,353 @@
+{{ 'section-ecom-expert-mindset.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    padding-left: {{ section.settings.padding_left_mobile }}px;
+    padding-right: {{ section.settings.padding_right_mobile }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+      padding-left: {{ section.settings.padding_left }}px;
+      padding-right: {{ section.settings.padding_right }}px;
+    }
+  }
+
+  .ecom-expert-mindset[data-section-id="{{ section.id }}"] {
+    --button-color: {{ section.settings.button_color }};
+    --button-text-color: {{ section.settings.button_text_color }};
+    --Light-BG: {{ section.settings.card_bg_color }};
+    --heading-color: {{ section.settings.heading_color }};
+    --text-color: {{ section.settings.text_color }};
+  }
+{%- endstyle -%}
+
+<div class="color-{{ section.settings.color_scheme }} ecom-expert-mindset section-{{ section.id }}-padding" data-section-id="{{ section.id }}">
+  <div class="page-width">
+    <div class="ecom-expert-mindset__header">
+      {%- if section.settings.label != blank -%}
+        <div class="ecom-expert-mindset__label">
+          <span class="ecom-expert-mindset__label-line"></span>
+          <span class="ecom-expert-mindset__label-text">{{ section.settings.label | escape }}</span>
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.heading != blank -%}
+        <h2 class="ecom-expert-mindset__heading">{{ section.settings.heading | escape }}</h2>
+      {%- endif -%}
+
+      {%- if section.settings.paragraph != blank -%}
+        <p class="ecom-expert-mindset__paragraph">{{ section.settings.paragraph | escape }}</p>
+      {%- endif -%}
+
+      {%- if section.settings.button_text != blank and section.settings.button_url != blank -%}
+        <a href="{{ section.settings.button_url }}" class="ecom-expert-mindset__button button">
+          {{ section.settings.button_text | escape }}
+        </a>
+      {%- endif -%}
+    </div>
+
+    <div class="ecom-expert-mindset__cards-wrapper">
+      <div class="ecom-expert-mindset__cards" id="ecom-cards-{{ section.id }}">
+        {%- for block in section.blocks -%}
+          <div class="ecom-expert-mindset__card" {{ block.shopify_attributes }}>
+            {%- if block.settings.number != blank -%}
+              <div class="ecom-expert-mindset__card-number">{{ block.settings.number | escape }}</div>
+            {%- endif -%}
+
+            {%- if block.settings.title != blank -%}
+              <h3 class="ecom-expert-mindset__card-title">{{ block.settings.title | escape }}</h3>
+            {%- endif -%}
+
+            {%- if block.settings.description != blank -%}
+              <p class="ecom-expert-mindset__card-description">{{ block.settings.description | escape }}</p>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      </div>
+
+      {%- if section.blocks.size > 1 -%}
+        <div class="ecom-expert-mindset__pagination" id="ecom-pagination-{{ section.id }}">
+          {%- assign max_index = section.blocks.size | minus: 1 -%}
+          {%- for i in (0..max_index) -%}
+            <button class="ecom-expert-mindset__dot{% if i == 0 %} ecom-expert-mindset__dot--active{% endif %}" data-index="{{ i }}" aria-label="Go to slide {{ i | plus: 1 }}"></button>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    const sectionId = '{{ section.id }}';
+    const cardsContainer = document.getElementById('ecom-cards-' + sectionId);
+    const paginationContainer = document.getElementById('ecom-pagination-' + sectionId);
+    
+    if (!cardsContainer || !paginationContainer) return;
+
+    const dots = paginationContainer.querySelectorAll('.ecom-expert-mindset__dot');
+    if (dots.length === 0) return;
+
+    function updateActiveDot() {
+      const scrollLeft = cardsContainer.scrollLeft;
+      const cardWidth = cardsContainer.querySelector('.ecom-expert-mindset__card').offsetWidth + 24;
+      const activeIndex = Math.round(scrollLeft / cardWidth);
+      
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('ecom-expert-mindset__dot--active', index === activeIndex);
+      });
+    }
+
+    cardsContainer.addEventListener('scroll', updateActiveDot);
+    
+    dots.forEach(dot => {
+      dot.addEventListener('click', function() {
+        const index = parseInt(this.dataset.index);
+        const cardWidth = cardsContainer.querySelector('.ecom-expert-mindset__card').offsetWidth + 24;
+        cardsContainer.scrollTo({
+          left: index * cardWidth,
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    updateActiveDot();
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "EcomExpert Mindset",
+  "tag": "section",
+  "class": "ecom-expert-mindset-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Label Text",
+      "default": "Our Difference"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Add your heading"
+    },
+    {
+      "type": "textarea",
+      "id": "paragraph",
+      "label": "Paragraph",
+      "default": "Add a short descriptive paragraph"
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "LET'S CONNECT"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button URL"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color Scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button Background Color",
+      "default": "#FFC001"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "card_bg_color",
+      "label": "Card Background Color",
+      "default": "#F5F7F9"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_left",
+      "min": 0,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "label": "Padding Left",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_right",
+      "min": 0,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "label": "Padding Right",
+      "default": 100
+    },
+    {
+      "type": "header",
+      "content": "Mobile Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "label": "Mobile Padding Top",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "label": "Mobile Padding Bottom",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_left_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "label": "Mobile Padding Left",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_right_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "label": "Mobile Padding Right",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Mindset Card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "number",
+          "label": "Number (e.g., 01, 02, 03)",
+          "default": "01"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Card title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Card description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "EcomExpert Mindset",
+      "blocks": [
+        {
+          "type": "card",
+          "settings": {
+            "number": "01",
+            "title": "Card title",
+            "description": "Card description"
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "number": "02",
+            "title": "Card title",
+            "description": "Card description"
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "number": "03",
+            "title": "Card title",
+            "description": "Card description"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

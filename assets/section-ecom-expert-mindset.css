@@ -1,0 +1,276 @@
+/* /assets/section-ecom-expert-mindset.css */
+
+:root {
+  --font-primary: "Circular Std", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --color-text: #000000;
+  --color-label: #999999;
+  --color-inactive-dot: #d0d0d0;
+  --color-active-dot: #000000;
+  --color-hover-dot: #808080;
+}
+
+.ecom-expert-mindset {
+  background-color: transparent;
+}
+
+.ecom-expert-mindset__header {
+  margin-bottom: 4rem;
+}
+
+.ecom-expert-mindset__label {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.ecom-expert-mindset__label-line {
+  flex: 1;
+  height: 1px;
+  background-color: #999999;
+  position: relative;
+}
+
+.ecom-expert-mindset__label-line::after {
+  content: '';
+  position: absolute;
+  right: -5px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 10px;
+  background-color: #999999;
+  border-radius: 50%;
+}
+
+.ecom-expert-mindset__label-text {
+  font-family: var(--font-primary);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-label);
+  letter-spacing: -0.16px;
+  line-height: 22px;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.ecom-expert-mindset__heading {
+  font-family: var(--font-primary);
+  font-size: 54px;
+  font-weight: 450;
+  line-height: 1.3;
+  letter-spacing: -2.7px;
+  margin: 0 0 1.5rem 0;
+  color: var(--heading-color, #000000);
+  vertical-align: middle;
+}
+
+.ecom-expert-mindset__paragraph {
+  font-family: var(--font-primary);
+  font-size: 18px;
+  font-weight: 450;
+  line-height: 1.4;
+  letter-spacing: -0.16px;
+  margin: 0 0 2rem 0;
+  color: var(--text-color, #000000);
+  max-width: 600px;
+  vertical-align: bottom;
+}
+
+.ecom-expert-mindset__button {
+  display: inline-block;
+  width: 180px;
+  padding: 14px 24px;
+  background-color: var(--button-color, #FFC001);
+  color: var(--button-text-color, #000000);
+  text-decoration: none;
+  border-radius: 6px;
+  font-family: var(--font-primary);
+  font-weight: 900;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.34px;
+  text-align: center;
+  vertical-align: middle;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.ecom-expert-mindset__button:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+.ecom-expert-mindset__cards-wrapper {
+  position: relative;
+}
+
+.ecom-expert-mindset__cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+  margin-top: 4rem;
+}
+
+.ecom-expert-mindset__card {
+  background-color: var(--Light-BG, #F5F7F9);
+  padding: 3rem 1.5rem;
+  border-radius: 18px;
+  transition: transform 0.3s ease;
+}
+
+.ecom-expert-mindset__card-number {
+  font-family: var(--font-primary);
+  font-size: 92px;
+  font-weight: 450;
+  line-height: 92.61px;
+  margin-bottom: 1.5rem;
+  color: var(--text-color, #000000);
+  letter-spacing: 0;
+  vertical-align: middle;
+}
+
+.ecom-expert-mindset__card-title {
+  font-family: var(--font-primary);
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.4;
+  margin: 0 0 1rem 0;
+  color: var(--text-color, #000000);
+  letter-spacing: -0.64px;
+  text-transform: uppercase;
+  vertical-align: middle;
+  max-width: 230px;
+}
+
+.ecom-expert-mindset__card-description {
+  font-family: var(--font-primary);
+  font-size: 18px;
+  font-weight: 450;
+  line-height: 1.4;
+  margin: 0;
+  color: var(--text-color, #000000);
+  letter-spacing: -0.16px;
+  vertical-align: middle;
+}
+
+/* Pagination Dots */
+.ecom-expert-mindset__pagination {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+
+.ecom-expert-mindset__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--color-inactive-dot);
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.3s ease;
+}
+
+.ecom-expert-mindset__dot--active {
+  background-color: var(--color-active-dot);
+}
+
+.ecom-expert-mindset__dot:hover {
+  background-color: var(--color-hover-dot);
+}
+
+/* Mobile Responsive */
+@media screen and (max-width: 749px) {
+  .ecom-expert-mindset__header {
+    margin-bottom: 2.5rem;
+  }
+
+  .ecom-expert-mindset__heading {
+    font-size: 28px;
+    line-height: 1.3;
+    letter-spacing: -1px;
+  }
+
+  .ecom-expert-mindset__paragraph {
+    font-size: 14px;
+    line-height: 1.4;
+    letter-spacing: -0.16px;
+    margin-bottom: 1.5rem;
+  }
+
+  .ecom-expert-mindset__button {
+    font-size: 14px;
+    font-weight: 900;
+    line-height: 20px;
+    letter-spacing: 0.34px;
+  }
+
+  .ecom-expert-mindset__card {
+    padding: 2rem 1.5rem;
+    border-radius: 8px;
+  }
+
+  .ecom-expert-mindset__card-number {
+    font-size: 54px;
+    line-height: 54px;
+    letter-spacing: 0;
+  }
+
+  .ecom-expert-mindset__card-title {
+    font-size: 20px;
+    line-height: 1.4;
+    letter-spacing: -0.64px;
+  }
+
+  .ecom-expert-mindset__card-description {
+    font-size: 14px;
+    line-height: 1.4;
+    letter-spacing: -0.16px;
+  }
+
+  .ecom-expert-mindset__pagination {
+    display: flex;
+  }
+
+   .ecom-expert-mindset__cards {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 0;
+    scrollbar-width: none;
+    padding-left: 0;
+  }
+
+  .ecom-expert-mindset__cards::-webkit-scrollbar {
+    display: none;
+  }
+
+  .ecom-expert-mindset__card {
+    flex: 0 0 304px;
+    min-width: 304px;
+    height: 254px;
+    width: 304px;
+    padding: 12px;
+    border-radius: 8px;
+    gap: 24px;
+  }
+}
+
+/* Mobile Responsive */
+@media (prefers-reduced-motion: reduce) {
+  .ecom-expert-mindset__button,
+  .ecom-expert-mindset__card {
+    transition: none;
+  }
+}
