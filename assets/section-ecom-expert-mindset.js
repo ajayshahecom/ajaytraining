@@ -3,8 +3,6 @@ export class EcomExpertMindset extends HTMLElement {
       constructor() {
         super();
         this.swiper = null;
-        this.sectionId = this.getAttribute('data-section-id');
-        this.enableMobileSlider = this.getAttribute('data-enable-mobile-slider') === 'true';
         this.resizeTimeout = null;
       }
 
@@ -17,11 +15,14 @@ export class EcomExpertMindset extends HTMLElement {
       }
 
       connectedCallback() {
+        // Get attributes after element is connected to DOM
+        this.sectionId = this.getAttribute('data-section-id');
+        this.enableMobileSlider = this.getAttribute('data-enable-mobile-slider') === 'true';
+
+        // Initial check
         this.handleResize();
 
-        this.resizeObserver = new ResizeObserver(() => this.handleResize());
-        this.resizeObserver.observe(this);
-
+        // Debounced resize handler (100ms)
         this.handleWindowResize = () => {
           clearTimeout(this.resizeTimeout);
           this.resizeTimeout = setTimeout(() => this.handleResize(), 100);
@@ -34,7 +35,6 @@ export class EcomExpertMindset extends HTMLElement {
           this.swiper.destroy(true, true);
           this.swiper = null;
         }
-        this.resizeObserver?.disconnect();
         window.removeEventListener('resize', this.handleWindowResize);
         clearTimeout(this.resizeTimeout);
       }

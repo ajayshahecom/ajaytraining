@@ -283,6 +283,7 @@
     box-sizing: border-box;
     opacity: 1;
     flex-shrink: 0;
+    margin: 0 !important;
   }
 
   .ecom-expert-mindset__card-number {
@@ -345,12 +346,17 @@
     bottom: auto;
   }
 
+  .ecom-expert-mindset__pagination.swiper-pagination {
+    gap: 6px;
+  }
+
   .ecom-expert-mindset__pagination .swiper-pagination-bullet {
     width: 10px;
     height: 10px;
     border-radius: 50%;
     background-color: var(--color-inactive-dot);
     opacity: 1;
+    margin: 0 !important;
     transition: background-color 0.3s ease;
   }
 
