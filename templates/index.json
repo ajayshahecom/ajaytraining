@@ -179,12 +179,54 @@
         "title": "Product Highlights Title",
         "description": "Product Highlights description will appear here."
       }
+    },
+    "ecom_expert_mindset": {
+      "type": "ecom-expert-mindset",
+      "blocks": {
+        "card_1": {
+          "type": "card",
+          "settings": {
+            "number": "01.",
+            "title": "DESIGN IS A GROWTH TOOL.",
+            "description": "Every layout, element, and interaction serves a purpose: driving measurable growth, optimizing experience, and boosting profit per session."
+          }
+        },
+        "card_2": {
+          "type": "card",
+          "settings": {
+            "number": "02.",
+            "title": "CLARITY CREATES MOMENTUM.",
+            "description": "By aligning data, teams, and goals, we transform insights into confident decisions – the kind that build momentum and consistent ROI."
+          }
+        },
+        "card_3": {
+          "type": "card",
+          "settings": {
+            "number": "03.",
+            "title": "VISION DRIVES EXECUTION.",
+            "description": "Our process bridges founder vision with proven frameworks – turning creativity into results people can see, use, and believe in."
+          }
+        }
+      },
+      "block_order": [
+        "card_1",
+        "card_2",
+        "card_3"
+      ],
+      "settings": {
+        "label": "Our Difference",
+        "heading": "The EcomExpert Mindset.",
+        "paragraph": "These principles guide everything we do from our first kickoff to every late-night push before launch.",
+        "button_text": "LET'S CONNECT",
+        "button_url": ""
+      }
     }
   },
   "order": [
     "hero_1",
     "featured_collections_hhETJ9",
     "selling_points_v2_6NgzaK",
-    "product_highlights_gUaG6E"
+    "product_highlights_gUaG6E",
+    "ecom_expert_mindset"
   ]
 }
