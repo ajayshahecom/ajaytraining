@@ -12,12 +12,47 @@
     "main": {
       "type": "page",
       "settings": {
+        "color_scheme": "",
+        "max_page_width_narrow": 1000,
         "padding_top": 28,
         "padding_bottom": 28
       }
+    },
+    "1781719657b8ea6855": {
+      "type": "apps",
+      "blocks": {
+        "wr_quizzes_quiz_section_3yRjdp": {
+          "type": "shopify://apps/wr-quizzes/blocks/quiz_section/019ed6b8-2c7b-7245-b39e-33dc1c52136d",
+          "settings": {
+            "metaobject_quiz_id": "",
+            "app_quiz_id": "54788860-4457-4f24-a8ea-38c84f9172e3",
+            "quiz_theme_css": "",
+            "proxy_path": "/apps/quiz-flow",
+            "klaviyo_public_api_key": "",
+            "klaviyo_list_id": ""
+          }
+        },
+        "wr_quizzes_complexion_quiz_E6VR3D": {
+          "type": "shopify://apps/wr-quizzes/blocks/complexion-quiz/019ed6b8-2c7b-7245-b39e-33dc1c52136d",
+          "settings": {
+            "quiz_id": 201,
+            "app_quiz_id": "",
+            "proxy_path": "/apps/quiz-stg",
+            "klaviyo_public_api_key": "",
+            "klaviyo_list_id": "",
+            "complexion_engine_mini_test": true
+          }
+        }
+      },
+      "block_order": [
+        "wr_quizzes_quiz_section_3yRjdp",
+        "wr_quizzes_complexion_quiz_E6VR3D"
+      ],
+      "settings": {}
     }
   },
   "order": [
-    "main"
+    "main",
+    "1781719657b8ea6855"
   ]
 }
