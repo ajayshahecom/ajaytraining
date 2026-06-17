@@ -31,22 +31,10 @@
             "klaviyo_public_api_key": "",
             "klaviyo_list_id": ""
           }
-        },
-        "wr_quizzes_complexion_quiz_E6VR3D": {
-          "type": "shopify://apps/wr-quizzes/blocks/complexion-quiz/019ed6b8-2c7b-7245-b39e-33dc1c52136d",
-          "settings": {
-            "quiz_id": 201,
-            "app_quiz_id": "",
-            "proxy_path": "/apps/quiz-stg",
-            "klaviyo_public_api_key": "",
-            "klaviyo_list_id": "",
-            "complexion_engine_mini_test": true
-          }
         }
       },
       "block_order": [
-        "wr_quizzes_quiz_section_3yRjdp",
-        "wr_quizzes_complexion_quiz_E6VR3D"
+        "wr_quizzes_quiz_section_3yRjdp"
       ],
       "settings": {}
     }
